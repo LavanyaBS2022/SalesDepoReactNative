@@ -1,12 +1,15 @@
 import axios from 'axios';
+import Constants from 'expo-constants';
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6eyJpZCI6MjM1OTA0LCJuYW1lIjoiVTIwIiwiY29fY29kZSI6IjIwIiwiZW1haWwiOm51bGwsInBhc3N3b3JkIjoiOTY5ODAgICAgICIsImNvbXBhbnlfbmFtZSI6IkJhbmdhbG9yZSBTYWxlcyBEZXBvdCIsImNvbXBhbnlfYWRkcmVzcyI6IktNRiBDb21wbGV4LCBEciBNIEggTWFyaWdvd2RhIFJhb2QifSwiaWF0IjoxNzIwNTgzMjM4LCJleHAiOjE3MjA2Njk2Mzh9.95ANUJvmjC3-mkTeMbf38FoJ5tteYd_S74jGOY8G-YI'; 
+const apiUrl = Constants.manifest.extra.apiUrl;
+const apiToken = Constants.manifest.extra.apiToken;
+
 const apiClient = axios.create({
-  baseURL: 'http://202.21.34.147:49152/erp_sales_cirayo/api/v1/', 
-  timeout: 10000, 
+  baseURL: apiUrl,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `${token}`,
+    'Authorization': `Bearer ${apiToken}`,
   },
 });
 
@@ -23,29 +26,28 @@ export const loginUser = async (code, password) => {
 };
 
 export const fetchListData = async (pFromDate, pToDate) => {
-    try {
-      const response = await apiClient.get('/taxInvoice/dayBook', {
-        params: {
-          pFromDate,
-          pToDate,
-        },
-      });
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      throw error;
-    }
-  };
+  try {
+    const response = await apiClient.get('/taxInvoice/dayBook', {
+      params: {
+        pFromDate,
+        pToDate,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
 
-  // export const fetchItemDetails = async (gpNumber) => {
-  //   const response = await apiClient.get(`/taxInvoice/taxInvoicePrint?gp_number=${gpNumber}`);
-  //   return response.data;
-  // };
-  
-  export const fetchItemDetails = async (gpNumber) => {
-    const url = `/taxInvoice/taxInvoicePrint?gp_number=${gpNumber}`;
-    console.log('Request URL:', url); 
+export const fetchItemDetails = async (gpNumber) => {
+  const url = `/taxInvoice/taxInvoicePrint?gp_number=${gpNumber}`;
+  console.log('Request URL:', url);
+  try {
     const response = await apiClient.get(url);
     return response.data;
-  };
-  
+  } catch (error) {
+    console.error('Error fetching item details:', error);
+    throw error;
+  }
+};

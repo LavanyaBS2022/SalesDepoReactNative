@@ -4012,7 +4012,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"expo-constants@npm:~16.0.0":
+"expo-constants@npm:~16.0.0, expo-constants@npm:~16.0.2":
   version: 16.0.2
   resolution: "expo-constants@npm:16.0.2"
   dependencies:
@@ -7919,6 +7919,7 @@ __metadata:
     axios: ^1.7.2
     dayjs: ^1.11.11
     expo: ~51.0.17
+    expo-constants: ~16.0.2
     expo-status-bar: ~1.12.1
     react: 18.2.0
     react-dom: 18.2.0
