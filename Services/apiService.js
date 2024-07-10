@@ -1,8 +1,8 @@
 import axios from 'axios';
 import Constants from 'expo-constants';
 
-const apiUrl = Constants.manifest.extra.apiUrl;
-const apiToken = Constants.manifest.extra.apiToken;
+const apiUrl = Constants.expoConfig.extra.apiUrl;
+const apiToken = Constants.expoConfig.extra.apiToken;
 
 const apiClient = axios.create({
   baseURL: apiUrl,
@@ -21,6 +21,7 @@ export const loginUser = async (code, password) => {
     });
     return response.data;
   } catch (error) {
+    console.error('Error logging in:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
@@ -35,7 +36,7 @@ export const fetchListData = async (pFromDate, pToDate) => {
     });
     return response.data;
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error('Error fetching data:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
@@ -47,7 +48,7 @@ export const fetchItemDetails = async (gpNumber) => {
     const response = await apiClient.get(url);
     return response.data;
   } catch (error) {
-    console.error('Error fetching item details:', error);
+    console.error('Error fetching item details:', error.response ? error.response.data : error.message);
     throw error;
   }
 };
