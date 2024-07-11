@@ -27,7 +27,7 @@
     },
     "extra": {
       "apiUrl": "http://202.21.34.147:49152/erp_sales_cirayo/api/v1/",
-      "apiToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6eyJpZCI6MjM1OTA0LCJuYW1lIjoiVTIwIiwiY29fY29kZSI6IjIwIiwiZW1haWwiOm51bGwsInBhc3N3b3JkIjoiOTY5ODAgICAgICIsImNvbXBhbnlfbmFtZSI6IkJhbmdhbG9yZSBTYWxlcyBEZXBvdCIsImNvbXBhbnlfYWRkcmVzcyI6IktNRiBDb21wbGV4LCBEciBNIEggTWFyaWdvd2RhIFJhb2QifSwiaWF0IjoxNzIwNTgzMjM4LCJleHAiOjE3MjA2Njk2Mzh9.95ANUJvmjC3-mkTeMbf38FoJ5tteYd_S74jGOY8G-YI",
+      "apiToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6eyJpZCI6MjM1OTA0LCJuYW1lIjoiVTIwIiwiY29fY29kZSI6IjIwIiwiZW1haWwiOm51bGwsInBhc3N3b3JkIjoiOTY5ODAgICAgICIsImNvbXBhbnlfbmFtZSI6IkJhbmdhbG9yZSBTYWxlcyBEZXBvdCIsImNvbXBhbnlfYWRkcmVzcyI6IktNRiBDb21wbGV4LCBEciBNIEggTWFyaWdvd2RhIFJhb2QifSwiaWF0IjoxNzIwNjcwNDIzLCJleHAiOjE3MjA3NTY4MjN9.v332dE9qTZrBLgTFKxud2KMxZMiNu5umkk40q13c2fY",
       "eas": {
         "projectId": "b33ba4a3-d29c-475f-a46e-20918ed4abd6"
       }
