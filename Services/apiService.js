@@ -18,7 +18,7 @@ export const loginUser = async (code, password) => {
     const response = await apiClient.post('/login', {
       code,
       password,
-    });
+    })
     return response.data;
   } catch (error) {
     console.error('Error logging in:', error.response ? error.response.data : error.message);

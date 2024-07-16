@@ -135,7 +135,7 @@ const ListScreen = () => {
               <Text>{item.packetname}</Text>
             </View>
             <View style={[styles.itemDetailsCell, { flex: 1 }]}>
-              <Text>{item.qty}</Text>
+            <Text>{`${item.qty} ${item.per}`}</Text>
             </View>
             <View style={[styles.itemDetailsCell, { flex: 2 }]}>
               <Text>{item.disp1}</Text>
@@ -250,7 +250,7 @@ const ListScreen = () => {
                 <Text style={styles.tableCell}>{dayjs(item.GP_DATE).format('DD-MM-YY')}</Text>
                 <Text style={styles.tableCell}>{item.NAME}</Text>
                 <Text style={styles.tableCell}>{item.INVOICE_NO}</Text>
-                {/* <Text style={styles.tableCell}>{item.INDENT_TYPE}</Text> */}
+                <Text style={styles.tableCell}>{item.INDENT_TYPE}</Text>
               </TouchableOpacity>
             )}
             ListHeaderComponent={() => (
@@ -258,7 +258,7 @@ const ListScreen = () => {
                 <Text style={styles.tableHeaderCell}>GP Date</Text>
                 <Text style={styles.tableHeaderCell}>Customer Name</Text>
                 <Text style={styles.tableHeaderCell}>Invoice No</Text>
-                {/* <Text style={styles.tableHeaderCell}>Indent Type</Text> */}
+                <Text style={styles.tableHeaderCell}>Indent No</Text>
               </View>
             )}
             stickyHeaderIndices={[0]} // Make the header sticky
