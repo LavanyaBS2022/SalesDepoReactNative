@@ -20,10 +20,19 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.salesDepo",
+      "usesCleartextTraffic": true,
       "permissions": [
         "INTERNET",
         "ACCESS_NETWORK_STATE"
-      ]
+      ],
+      "buildProperties": {
+        "networkConfig": {
+          "cleartextTrafficPermitted": true,
+          "domains": [
+            "202.21.34.147"
+          ]
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -34,7 +43,9 @@
       "eas": {
         "projectId": "b33ba4a3-d29c-475f-a46e-20918ed4abd6"
       }
-    }
+    },
+    "plugins": [
+      "expo-build-properties"
+    ]
   }
 }
- 
