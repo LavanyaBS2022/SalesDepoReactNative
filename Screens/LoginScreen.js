@@ -2,25 +2,36 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, ImageBackground, Button } from 'react-native';
 import { FontAwesome, Feather } from '@expo/vector-icons';
 import { CommonActions } from '@react-navigation/native';
+import { loginUser } from '../Services/apiService';
+import ListScreen from './ListScreen';
 
 const LoginScreen = ({ navigation }) => {
   const [code, setCode] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const validCode = '123';
-  const validPassword = '123';
+  const handleLogin = async () => {
+    try {
+      console.log('Attempting login with:', code, password);
+      const response = await loginUser(code, password);
+      console.log('Login response:', response);
 
-  const handleLogin = () => {
-    if (code === validCode && password === validPassword) {
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: ' ' }],
-        })
-      );
-    } else {
+      if (response && response.token) { // Assuming your token is in 'response.token'
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: ' ' }], // Replace 'HomeScreen' with your target screen
+          })
+        );
+      } else {
+        setErrorMessage('Invalid Credentials');
+        setModalVisible(true);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      setErrorMessage('An error occurred. Please try again.');
       setModalVisible(true);
     }
   };
@@ -75,7 +86,7 @@ const LoginScreen = ({ navigation }) => {
           <View style={styles.modalContainer}>
             <View style={styles.modalView}>
               <Text style={styles.modalTitle}>Invalid Credentials</Text>
-              <Text style={styles.modalText}>The code or password you entered is incorrect.</Text>
+              <Text style={styles.modalText}>{errorMessage}</Text>
               <Button
                 title="Close"
                 onPress={() => setModalVisible(false)}

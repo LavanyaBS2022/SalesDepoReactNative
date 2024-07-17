@@ -2,24 +2,37 @@ import axios from 'axios';
 import Constants from 'expo-constants';
 
 const apiUrl = Constants.expoConfig.extra.apiUrl;
-const apiToken = Constants.expoConfig.extra.apiToken;
 
-const apiClient = axios.create({
+let apiClient = axios.create({
   baseURL: apiUrl,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${apiToken}`,
   },
 });
 
-export const loginUser = async (code, password) => {
+export const loginUser = async (userid, pwd) => {
   try {
-    const response = await apiClient.post('/login', {
-      code,
-      password,
-    })
-    return response.data;
+    const response = await apiClient.post('/login/authenticateDispatcher', {
+      userid,
+      pwd,
+    });
+
+    if (response.data.status) {
+      const { token, refreshToken } = response.data.data;
+      // Update apiClient instance with new headers including token
+      apiClient = axios.create({
+        baseURL: apiUrl,
+        timeout: 10000,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      return response.data.data; // Return user data including token for potential future use
+    } else {
+      throw new Error('Login failed');
+    }
   } catch (error) {
     console.error('Error logging in:', error.response ? error.response.data : error.message);
     throw error;
